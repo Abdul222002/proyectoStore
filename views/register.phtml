@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+</head>
+<body>
+    <h1>REGISTRATE</h1>
+    <?php
+        if(isset($_SESSION['message'])){
+            $color = $_SESSION['message_type'] == 'success' ? 'green' : 'red';
+            echo "<p style='color: $color;'>" . $_SESSION['message'] . "</p>";
+            // Limpiar el mensaje después de mostrarlo
+            unset($_SESSION['message']);
+            unset($_SESSION['message_type']);
+        }
+    ?>
+    <form action="index.php" method="post" enctype="multipart/form-data">
+        <label for="newUsername">User:</label>
+        <input type="text" id="newUsername" name="newUsername">
+        <br>
+        <label for="newEmail">Email:</label>
+        <input type="email" id="newEmail" name="newEmail">
+        <br>
+        <label for="newPassword">New Password:</label>
+        <input type="password" id="newPassword" name="newPassword">
+        <br>
+        <label for="confirmPassword">Confirm New Password:</label>
+        <input type="password" id="confirmPassword" name="confirmPassword">
+        <br>
+        <label for="image">Imagen:</label>
+        <input type="file" id="image" name="image" required>
+        <br>
+        <input type="submit" value="Registrarse" name="Registrarse"> 
+        <a href='index.php'>Volver</a>
+    </form>
+</body>
+</html>
