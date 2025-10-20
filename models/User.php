@@ -6,19 +6,13 @@ class User {
   private $email;
   private $password;
   private $role;
-  private $image;
 
-  public function __construct($id, $username, $email, $password, $role, $image) {
+  public function __construct($id, $username, $email, $password, $role) {
     $this->id = $id;
     $this->username = $username;
     $this->email = $email;
     $this->password = $password;
     $this->role = $role;
-    $this->image = $image;
-  }
-
-  public function getImage() {
-    return $this->image;
   }
 
   public function getId() {
