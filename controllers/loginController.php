@@ -28,28 +28,14 @@ if(isset($_POST['Registrarse'])
    && !empty($_POST['newUsername']) 
    && !empty($_POST['newPassword']) 
    && !empty($_POST['confirmPassword']) 
-   && !empty($_POST['newEmail']) 
-   && !empty($_FILES['image'])) {
-
-    // Obtener el nombre del archivo
-    $fileName = $_FILES['image']['name'];
-
-    // Intentar subir la imagen
-    if(!FileHelper::fileHandler($_FILES['image']['tmp_name'], 'public/img/'.$fileName)){
-        $fileName = '';
-        $_SESSION['message'] = 'Error al subir la imagen. Inténtalo de nuevo.';
-        $_SESSION['message_type'] = 'error';
-        require_once('views/register.phtml');
-        exit();
-    }
+   && !empty($_POST['newEmail'])) {
 
     // Crear usuario en la base de datos
     $result = LoginRepository::createUser(
         $_POST['newUsername'],
         $_POST['newPassword'],
         $_POST['confirmPassword'],
-        $_POST['newEmail'],
-        $fileName
+        $_POST['newEmail']
     );
 
     // Revisar resultado
@@ -77,7 +63,4 @@ if(isset($_POST['Registrar'])){
 
 
 
-//Cargamos la vista
-if(!isset($_SESSION['user']) || !$_SESSION['user']){
-    require_once('views/login.phtml');
-}
+require_once('views/login.phtml');

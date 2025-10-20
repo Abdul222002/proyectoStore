@@ -8,20 +8,21 @@ class LoginRepository {
         $result= $db->query($q);
         if($result->num_rows==1){
             $row= $result->fetch_assoc();
-            // Orden correcto: id, username, email, password, role, image
-            $user= new User($row['id'], $row['username'], $row['email'], $row['password'], $row['role'], $row['image'] ?? '');
+            // Orden correcto: id, username, email, password, role
+            $user= new User($row['id'], $row['username'], $row['email'], $row['password'], $row['role']);
             return $user;
         }
         return null;
     }
 
-  public static function createUser($username, $password, $confirmPassword, $email, $image = '') {
+  public static function createUser($username, $password, $confirmPassword, $email) {
+        
         if ($password !== $confirmPassword) {
             return false;
         }
 
         $db = Connection::connect();
-        $q = "INSERT INTO users (username, email, password, image) VALUES ('" . $username . "', '" . $email . "', '" . md5($password) . "', '" . $image . "')";
+        $q = "INSERT INTO users (username, email, password) VALUES ('" . $username . "', '" . $email . "', '" . md5($password) . "')";
         if ($db->query($q) === TRUE) {
             return true;
         } else {
@@ -34,7 +35,7 @@ class LoginRepository {
         $q = "SELECT * FROM users WHERE id='" . $id . "'";
         $result = $db->query($q);
         if ($row = mysqli_fetch_assoc($result)) {
-            return new User($row['id'], $row['username'], $row['email'], $row['password'], $row['role'], $row['image'] ?? '');
+            return new User($row['id'], $row['username'], $row['email'], $row['password'], $row['role']);
         }
         return null;
     }

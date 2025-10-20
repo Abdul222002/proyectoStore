@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <a href="index.php?c=login">Login</a>
+    <a href="index.php?c=register">Register</a>
+    <a href="index.php?c=cart">Shopping Cart</a>
+
+    <h1>Shop Page</h1>
+    <p>Welcome to the shop!</p>
+    <ul>
+        <li>Item 1</li>
+        <li>Item 2</li>
+        <li>Item 3</li>
+    </ul>   
+    <?php
+    var_dump($_SESSION['user']);
+    ?>
+    <a href="index.php?c=login&logout">Cerrar Sesión</a>
+</body>
+</html>
