@@ -7,14 +7,20 @@ class Product{
     private $price;
     private $stock;
     private $category;
+    private $image;
 
-    public function __construct($id, $name, $description, $category, $price, $stock) {
+    public function __construct($id, $name, $description, $category, $price, $stock, $image) {
         $this->id = $id;
         $this->name = $name;
         $this->description = $description;
         $this->category = $category;
         $this->price = $price;
         $this->stock = $stock;
+        $this->image = $image;
+    }
+
+    public function getImage() {
+        return $this->image;
     }
 
     public function getId() {
