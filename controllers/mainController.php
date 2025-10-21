@@ -3,6 +3,8 @@ require_once('models/User.php');
 require_once('models/LoginRepository.php');
 require_once('models/ProductoRepository.php');
 require_once('models/Product.php');
+require_once('models/OrderRepository.php');
+require_once('models/CartRepository.php');
 //Iniciamos la session y la conexion con la base de datos
 session_start();
 $db = Connection::connect();

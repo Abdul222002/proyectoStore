@@ -47,7 +47,7 @@
             <?php
             if($_SESSION['user']!== false){
                 ?>
-                <form action="index.php?c=cart" method="post">
+                <form action="index.php?c=cart&addCart&product_id=<?php echo $product->getId();?>" method="post">
                     <input type="hidden" name="product_id" value="<?php echo $product->getId(); ?>">
                     <input type="submit" value="Add to Cart">
                 </form>
