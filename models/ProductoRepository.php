@@ -2,13 +2,13 @@
 <?php
 
 class ProductoRepository {
-    public function getProductDetailsByProductId($product_id) {
+    public static function getProductDetailsByProductId($product_id) {
         $db = Connection::connect();
-        $q = "SELECT * FROM products WHERE id = ?";
+        $q = "SELECT * FROM products WHERE product_id = '" . $product_id . "'";
         $result = $db->query($q);
         $row= mysqli_fetch_assoc($result);
         return $row ? new Product(
-            $row['id'],
+            $row['product_id'],
             $row['name'],
             $row['description'],
             $row['category'],
@@ -18,14 +18,14 @@ class ProductoRepository {
         ) : null;
     }
 
-    public function getAllProducts() {
+    public static function getAllProducts() {
         $db = Connection::connect();
         $q = "SELECT * FROM products";
         $result = $db->query($q);
         $products = [];
         while ($row = mysqli_fetch_assoc($result)) {
             $products[] = new Product(
-                $row['id'],
+                $row['product_id'],
                 $row['name'],
                 $row['description'],
                 $row['category'],

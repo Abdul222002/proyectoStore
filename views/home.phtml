@@ -28,7 +28,17 @@
     <h1>Shop Page</h1>
     <p>Welcome to the shop!</p>
     <ul>
-    
-    </ul>   
+    <?php foreach($products as $product): ?>
+        <li>
+            <h2><?php echo htmlspecialchars($product->getName()); ?></h2>
+            <p>Price: $<?php echo number_format($product->getPrice(), 2); ?></p>
+            <p><?php echo htmlspecialchars($product->getDescription()); ?></p>
+            <form action="index.php?c=cart" method="post">
+                <input type="hidden" name="product_id" value="<?php echo $product->getId(); ?>">
+                <input type="submit" value="Add to Cart">
+            </form>
+        </li>
+    <?php endforeach; ?>
+    </ul>
 </body>
 </html>
