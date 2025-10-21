@@ -30,13 +30,22 @@
     <ul>
     <?php foreach($products as $product): ?>
         <li>
+            <img src="<?php echo htmlspecialchars($product->getImage()); ?>" alt="<?php echo htmlspecialchars($product->getName()); ?>">
             <h2><?php echo htmlspecialchars($product->getName()); ?></h2>
             <p>Price: $<?php echo number_format($product->getPrice(), 2); ?></p>
             <p><?php echo htmlspecialchars($product->getDescription()); ?></p>
-            <form action="index.php?c=cart" method="post">
-                <input type="hidden" name="product_id" value="<?php echo $product->getId(); ?>">
-                <input type="submit" value="Add to Cart">
-            </form>
+            <?php
+            if($_SESSION['user']!== false){
+                ?>
+                <form action="index.php?c=cart" method="post">
+                    <input type="hidden" name="product_id" value="<?php echo $product->getId(); ?>">
+                    <input type="submit" value="Add to Cart">
+                </form>
+            <?php
+            }else{
+                echo "<p style='color: red;'>Please log in to add products to your cart.</p>";
+            }
+            ?>
         </li>
     <?php endforeach; ?>
     </ul>
