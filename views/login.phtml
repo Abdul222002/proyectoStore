@@ -7,19 +7,8 @@
 </head>
 <body>  
     <h1>LOGIN</h1>
-        <form action="index.php" method="post">
-        <label for="username">Usuario:</label>
-        <input type="text" id="username" name="username">
-        <br>
-        <label for="password">Contraseña:</label>
-        <input type="password" id="password" name="password">
-        <br>
-        <input type="submit" value="Login" name="Login">
-        </form>
-        <a href='index.php'>Volver</a>
-</body>
-</html>
- <?php
+    
+    <?php
         if(isset($_SESSION['message'])){
             $color = $_SESSION['message_type'] == 'success' ? 'green' : 'red';
             echo "<p style='color: $color;'>" . $_SESSION['message'] . "</p>";
@@ -27,4 +16,18 @@
             unset($_SESSION['message']);
             unset($_SESSION['message_type']);
         }
-?>
+    ?>
+    
+    <form action="index.php?c=login" method="post">
+        <label for="username">Usuario:</label>
+        <input type="text" id="username" name="username" required>
+        <br>
+        <label for="password">Contraseña:</label>
+        <input type="password" id="password" name="password" required>
+        <br>
+        <input type="submit" value="Login" name="Login">
+        <input type="submit" value="Registrar" name="Registrar">
+    </form>
+    <a href='index.php'>Volver</a>
+</body>
+</html>

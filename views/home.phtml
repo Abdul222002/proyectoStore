@@ -6,9 +6,24 @@
     <title>Document</title>
 </head>
 <body>
-    <a href="index.php?c=login">Login</a>
-    <a href="index.php?c=register">Register</a>
-    <a href="index.php?c=cart">Shopping Cart</a>
+    <?php if(!isset($_SESSION['user']) || $_SESSION['user'] === false) {
+    echo "<a href='index.php?c=login'>Login</a>";
+    echo "   ";
+    echo "<a href='index.php?c=register'>Register</a>";
+    echo "   ";
+} else {
+    echo "<a href='index.php?c=cart'>Shopping Cart</a>";
+    echo "   ";
+    echo "<a href='index.php?c=login&logout=1'>Logout</a>";
+    echo "   ";
+}
+
+    if(isset($_SESSION['user']) && $_SESSION['user'] !== false){
+        echo "<p>Welcome, " . htmlspecialchars($_SESSION['user']->getUsername()) . "!</p>";
+    }else{
+        echo "<p>You are not logged in.</p>";
+    }
+    ?>
 
     <h1>Shop Page</h1>
     <p>Welcome to the shop!</p>
@@ -17,9 +32,5 @@
         <li>Item 2</li>
         <li>Item 3</li>
     </ul>   
-    <?php
-    var_dump($_SESSION['user']);
-    ?>
-    <a href="index.php?c=login&logout">Cerrar Sesión</a>
 </body>
 </html>
