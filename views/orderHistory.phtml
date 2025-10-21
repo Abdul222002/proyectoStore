@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+<?php
+
+if (!$pedidos){
+    ?><h4> NO HAY PEDIDOS </h4>';<?php
+}else{
+    foreach($pedidos as $pedido){
+        ?>  <tr>
+                <td><?= htmlspecialchars($order->getId()) ?></td>
+                <td><?= htmlspecialchars($order->getTotal()) ?></td>
+                <td><?= htmlspecialchars($order->getStatus()) ?></td>
+                <td><?= htmlspecialchars($order->getOrderDate()) ?></td>
+            </tr><?php
+    }
+}
+?>
+
+</body>
+</html>
+
+
