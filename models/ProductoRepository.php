@@ -2,7 +2,7 @@
 <?php
 
 class ProductoRepository {
-    public static function getProductDetailsByProductId($product_id) {
+    public static function getProductById($product_id) {
         $db = Connection::connect();
         $q = "SELECT * FROM products WHERE product_id = '" . $product_id . "'";
         $result = $db->query($q);
