@@ -31,9 +31,13 @@
     <?php foreach($products as $product): ?>
         <li>
             <img src="<?php echo htmlspecialchars($product->getImage()); ?>" alt="<?php echo htmlspecialchars($product->getName()); ?>">
-            <h2><?php echo htmlspecialchars($product->getName()); ?></h2>
-            <p>Price: $<?php echo number_format($product->getPrice(), 2); ?></p>
-            <p><?php echo htmlspecialchars($product->getDescription()); ?></p>
+        <h2>
+        <?php 
+        echo '<a href="index.php?c=product&id=' . $product->getId() . '">' . $product->getName() . '</a>'; 
+        ?>
+        </h2>
+        <p>Price: $<?php echo number_format($product->getPrice(), 2); ?></p>
+        <p><?php echo htmlspecialchars($product->getDescription()); ?></p>
             <?php
             if($_SESSION['user']!== false){
                 ?>

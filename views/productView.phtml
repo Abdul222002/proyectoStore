@@ -1,11 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
 <?php
-
-    
 echo '<img src="'.$product->getImage().'">';
 echo '<h1>'.$product->getName().'</h1>';
 echo '<p>'.$product->getDescription().'</p>';
 echo '<p>Precio: '.$product->getPrice().'</p>';
-echo '<p>Stock: '.$product->getStock().'</p>';
-
-
-?>
+echo '<p>Categoria: '.$product->getCategory().'</p>';
+if(isset($_SESSION['user']) && $_SESSION['user'] !== false){
+    echo '<form action="index.php?c=cart" method="post">
+            <input type="hidden" name="product_id" value="'.$product->getId().'">
+            <input type="submit" value="Add to Cart">
+          </form>';
+} else if($product->getStock() <= 0){
+    echo '<p style="color: red;">Out of Stock</p>';
+}
+echo '<a href="index.php">Volver</a>';
+?>    
+</body>
+</html>
