@@ -4,33 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
+    <link rel="stylesheet" href="public/styles/style_login.css">
 </head>
-<body>
+<body class="register-page">
+  <div class="register-container">
     <h1>REGISTRATE</h1>
+
     <?php
-        if(isset($_SESSION['message'])){
-            $color = $_SESSION['message_type'] == 'success' ? 'green' : 'red';
-            echo "<p style='color: $color;'>" . $_SESSION['message'] . "</p>";
-            // Limpiar el mensaje después de mostrarlo
-            unset($_SESSION['message']);
-            unset($_SESSION['message_type']);
-        }
+      if(isset($_SESSION['message'])){
+          $colorClass = $_SESSION['message_type'] == 'success' ? 'green' : 'red';
+          echo "<p class='message $colorClass'>" . $_SESSION['message'] . "</p>";
+          unset($_SESSION['message']);
+          unset($_SESSION['message_type']);
+      }
     ?>
-    <form action="index.php?c=register" method="post">  
-        <label for="newUsername">User:</label>
+
+    <form action="index.php?c=register" method="post" class="register-form">
+        <label for="newUsername">Usuario:</label>
         <input type="text" id="newUsername" name="newUsername" required>
-        <br>
+
         <label for="newEmail">Email:</label>
         <input type="email" id="newEmail" name="newEmail" required>
-        <br>
-        <label for="newPassword">New Password:</label>
+
+        <label for="newPassword">Contraseña:</label>
         <input type="password" id="newPassword" name="newPassword" required>
-        <br>
-        <label for="confirmPassword">Confirm New Password:</label>
+
+        <label for="confirmPassword">Confirmar Contraseña:</label>
         <input type="password" id="confirmPassword" name="confirmPassword" required>
-        <br>
-        <input type="submit" value="Registrarse" name="Registrarse"> 
-        <a href='index.php'>Volver</a>
+
+        <input type="submit" value="Registrarse" name="Registrarse">
     </form>
+
+    <a href="index.php" class="back-link">Volver</a>
+  </div>
 </body>
+
 </html>

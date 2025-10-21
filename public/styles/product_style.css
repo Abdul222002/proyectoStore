@@ -1,0 +1,111 @@
+/* ==== RESET ==== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Roboto, sans-serif;
+}
+
+body {
+  background-color: #f7f7f7;
+  color: #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+/* ==== PRODUCT CONTAINER ==== */
+.product-container {
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  text-align: center;
+  animation: fadeIn 0.6s ease;
+}
+
+.product-container img {
+  width: 100%;
+  max-height: 350px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+/* ==== TEXT STYLES ==== */
+.product-container h1 {
+  font-size: 1.8rem;
+  color: #222;
+  margin-bottom: 10px;
+}
+
+.description {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 15px;
+  line-height: 1.5;
+}
+
+.price {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.price span {
+  color: #0078d7;
+  font-weight: bold;
+}
+
+.category {
+  font-size: 0.95rem;
+  color: #777;
+  margin-bottom: 20px;
+}
+
+/* ==== BUTTON ==== */
+input[type="submit"] {
+  background-color: #0078d7;
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+input[type="submit"]:hover {
+  background-color: #005fa3;
+  transform: scale(1.03);
+}
+
+/* ==== OUT OF STOCK ==== */
+.out-of-stock {
+  color: red;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+/* ==== BACK LINK ==== */
+.back-link {
+  display: inline-block;
+  margin-top: 15px;
+  color: #0078d7;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.back-link:hover {
+  color: #005fa3;
+  text-decoration: underline;
+}
+
+/* ==== ANIMATION ==== */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
