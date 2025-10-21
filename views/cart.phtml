@@ -9,5 +9,17 @@
     <h1>Shop Page</h1>
     <p>This is the shopping cart page.</p>
     <a href="index.php">Continue Shopping</a>
+    <!-- Products -->
+<br>
+<?php print_r($_SESSION['cart'] ?? []); ?>
+<br>
+<?php
+    foreach($_SESSION['cart'] as $producto){
+        echo '<p>'.$producto->getName().'</p>';
+    }
+
+?>
+    <input type="submit" value="Pay" name="Pay">
+
 </body>
 </html>
