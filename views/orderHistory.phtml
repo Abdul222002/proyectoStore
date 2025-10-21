@@ -14,12 +14,26 @@ if (!$pedidos){
     ?><h4> NO HAY PEDIDOS </h4>';<?php
 }else{
     foreach($pedidos as $pedido){
-        ?>  <tr>
+        ?>  
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>TOTAL</th>
+                <th>STATE</th>
+                <th>DATE</th>
+            </tr>
+        </thead>    
+        <tbody>
+            <tr>
                 <td><?= htmlspecialchars($order->getId()) ?></td>
                 <td><?= htmlspecialchars($order->getTotal()) ?></td>
                 <td><?= htmlspecialchars($order->getStatus()) ?></td>
                 <td><?= htmlspecialchars($order->getOrderDate()) ?></td>
-            </tr><?php
+            </tr>
+        </tbody>
+    </table>
+    <?php
     }
 }
 ?>
