@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="public/styles/style.css">
     <title>Home Shop</title>
 </head>
 <body>
@@ -16,6 +17,7 @@
     echo "   ";
     echo "<a href='index.php?c=login&logout=1'>Logout</a>";
     echo "   ";
+    echo "<a href='index.php?c=orders'>My Orders</a>";
 }
 
     if(isset($_SESSION['user']) && $_SESSION['user'] !== false){
@@ -26,7 +28,9 @@
     ?>
 
     <h1>Shop Page</h1>
-    <p>Welcome to the shop!</p>
+    <p class="welcome-text">Welcome to the shop!</p>
+
+    <div id ="product-list">
     <ul>
     <?php foreach($products as $product): ?>
         <li>
@@ -36,7 +40,7 @@
         echo '<a href="index.php?c=product&id=' . $product->getId() . '">' . $product->getName() . '</a>'; 
         ?>
         </h2>
-        <p>Price: $<?php echo number_format($product->getPrice(), 2); ?></p>
+        <p>Price: <?php echo number_format($product->getPrice(), 2);  ?> €</p>
         <p><?php echo htmlspecialchars($product->getDescription()); ?></p>
             <?php
             if($_SESSION['user']!== false){
@@ -53,5 +57,6 @@
         </li>
     <?php endforeach; ?>
     </ul>
+    </div>
 </body>
 </html>

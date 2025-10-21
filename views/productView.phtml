@@ -3,24 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Product Details</title>
+    <link rel="stylesheet" href="public/styles/product_style.css">
 </head>
 <body>
 <?php
-echo '<img src="'.$product->getImage().'">';
-echo '<h1>'.$product->getName().'</h1>';
-echo '<p>'.$product->getDescription().'</p>';
-echo '<p>Precio: '.$product->getPrice().'</p>';
-echo '<p>Categoria: '.$product->getCategory().'</p>';
+echo '<div class="product-container">';
+echo '<img src="'.htmlspecialchars($product->getImage()).'" alt="'.htmlspecialchars($product->getName()).'">';
+echo '<h1>'.htmlspecialchars($product->getName()).'</h1>';
+echo '<p class="description">'.htmlspecialchars($product->getDescription()).'</p>';
+echo '<p class="price">Price: <span>'.number_format($product->getPrice(), 2).' €</span></p>';
+echo '<p class="category">Category: '.htmlspecialchars($product->getCategory()).'</p>';
+
 if(isset($_SESSION['user']) && $_SESSION['user'] !== false){
     echo '<form action="index.php?c=cart" method="post">
-            <input type="hidden" name="product_id" value="'.$product->getId().'">
+            <input type="hidden" name="product_id" value="'.htmlspecialchars($product->getId()).'">
             <input type="submit" value="Add to Cart">
           </form>';
 } else if($product->getStock() <= 0){
-    echo '<p style="color: red;">Out of Stock</p>';
+    echo '<p class="out-of-stock">Out of Stock</p>';
 }
-echo '<a href="index.php">Volver</a>';
+
+echo '<a href="index.php" class="back-link">← Back to shop</a>';
+echo '</div>';
 ?>    
 </body>
 </html>
