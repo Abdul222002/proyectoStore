@@ -2,7 +2,7 @@
 
 class OrderRepository {
     
-    public function getOrdersByUserId($user_id) {
+    public static function getOrdersByUserId($user_id) {
         $db = Connection::connect();
         $q = "SELECT * FROM orders WHERE user_id = ?";
         $result = $db->query($q);
@@ -18,6 +18,14 @@ class OrderRepository {
         }
         return $orders;
         
+    }
+
+    public static function addProductOrder($product_id) {
+        $product= ProductoRepository::getProductById($product_id);
+        if($product){
+            
+        }
+
     }
 }
 

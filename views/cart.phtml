@@ -12,8 +12,11 @@
     <!-- Products -->
 <br>
 <?php foreach($_SESSION['cart'] as $product){
-    echo $product['name'];<br>
-} ?>
+    echo $product->getName();
+    echo '<br>';
+} 
+
+?>
 <br>
     <input type="submit" value="Pay" name="Pay">
 

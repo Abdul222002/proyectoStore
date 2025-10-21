@@ -7,6 +7,7 @@ class Order {
     private $total;
     private $status;
     private $order_date;
+    private $products = [];
     
     public function __construct($id, $user_Id, $order_date, $status, $total) {
         $this->id = $id;
@@ -14,6 +15,7 @@ class Order {
         $this->total = $total;
         $this->status = $status;
         $this->order_date = $order_date;
+        $this->products = [];
     }
     
     public function getId() {
@@ -35,6 +37,14 @@ class Order {
     public function getOrder_Date() {
         return $this->order_date;
     }
+    
+    public function getProducts() {
+        $products[] = OrderRepository::getProductsByOrderId($this->id);
+        return $this->products;
+    }
+
+    
+
 
 
 }
