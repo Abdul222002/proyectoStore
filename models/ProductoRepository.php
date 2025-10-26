@@ -36,5 +36,13 @@ class ProductoRepository {
         }
         return $products;
     }
+
+    public static function decreaseStock($product_id, $quantity) {
+    $db = Connection::connect();
+    $q = "UPDATE products SET stock = stock - ? WHERE product_id = ? AND stock >= ?";
+    $stmt = $db->prepare($q);
+    $stmt->bind_param("iii", $quantity, $product_id, $quantity);
+    return $stmt->execute();
+    }
 }
 ?>

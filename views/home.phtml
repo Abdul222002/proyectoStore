@@ -1,3 +1,14 @@
+<?php
+// Asegurar sesión activa
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+// Asegurar que la variable de sesión 'user' existe
+if (!isset($_SESSION['user'])) {
+    $_SESSION['user'] = false;
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,57 +18,74 @@
     <title>Home Shop</title>
 </head>
 <body>
-    <?php if(!isset($_SESSION['user']) || $_SESSION['user'] === false) {
-    echo "<a href='index.php?c=login'>Login</a>";
-    echo "   ";
-    echo "<a href='index.php?c=register'>Register</a>";
-    echo "   ";
+
+<?php
+// Mostrar enlaces según el estado del usuario
+if (!$_SESSION['user']) {
+    echo "<a href='index.php?c=login'>Login</a>   ";
+    echo "<a href='index.php?c=register'>Register</a>   ";
 } else {
-    echo "<a href='index.php?c=profile'>Profile</a>";
-    echo "   ";
-    echo "<a href='index.php?c=cart'>Shopping Cart</a>";
-    echo "   ";
-    echo "<a href='index.php?c=login&logout=1'>Logout</a>";
-    echo "   ";
-    echo "<a href='index.php?c=orders'>My Orders</a>";
+    echo "<a href='index.php?c=profile'>Profile</a>   ";
+    echo "<a href='index.php?c=cart'>Shopping Cart</a>   ";
+    echo "<a href='index.php?c=login&logout=1'>Logout</a>   ";
+    echo "<a href='index.php?c=orders'>My Orders</a>   ";
 }
 
-    if(isset($_SESSION['user']) && $_SESSION['user'] !== false){
-        echo "<p>Welcome, " . htmlspecialchars($_SESSION['user']->getUsername()) . "!</p>";
-    }else{
-        echo "<p>You are not logged in.</p>";
-    }
-    ?>
+// Mensaje de bienvenida o no autenticado
+if ($_SESSION['user']) {
+    echo "<p>Welcome, " . htmlspecialchars($_SESSION['user']->getUsername()) . "!</p>";
+} else {
+    echo "<p>You are not logged in.</p>";
+}
+?>
 
-    <h1>Shop Page</h1>
-    <p class="welcome-text">Welcome to the shop!</p>
+<h1>Shop Page</h1>
+<p class="welcome-text">Welcome to the shop!</p>
 
-    <div id ="product-list">
+<div id="product-list">
     <ul>
-    <?php foreach($products as $product): ?>
-        <li>
-            <img src="<?php echo htmlspecialchars($product->getImage()); ?>" alt="<?php echo htmlspecialchars($product->getName()); ?>">
-        <h2>
-        <?php 
-        echo '<a href="index.php?c=product&id=' . $product->getId() . '">' . $product->getName() . '</a>'; 
-        ?>
-        </h2>
-        <p>Price: <?php echo number_format($product->getPrice(), 2);  ?> €</p>
-        <p><?php echo htmlspecialchars($product->getDescription()); ?></p>
-            <?php
-            if($_SESSION['user']!== false){
-                ?>
-                <form action="index.php?c=cart&addCart&product_id=<?php echo $product->getId();?>" method="post">
-                    <input type="submit" value="Add to Cart">
-                </form>
-            <?php
-            }else{
-                echo "<p style='color: red;'>Please log in to add products to your cart.</p>";
-            }
-            ?>
-        </li>
-    <?php endforeach; ?>
+        <?php foreach ($products as $product): ?>
+            <li>
+                <img src="<?= htmlspecialchars($product->getImage()); ?>" alt="<?= htmlspecialchars($product->getName()); ?>">
+                <h2>
+                    <a href="index.php?c=product&id=<?= $product->getId(); ?>">
+                        <?= htmlspecialchars($product->getName()); ?>
+                    </a>
+                </h2>
+                <p>Price: <?= number_format($product->getPrice(), 2); ?> €</p>
+                <p><?= htmlspecialchars($product->getDescription()); ?></p>
+
+                <?php if ($_SESSION['user']): ?>
+                    <form action="index.php?c=cart&addCart&product_id=<?= $product->getId(); ?>" method="post">
+                        <input type="submit" value="Add to Cart">
+                    </form>
+                <?php else: ?>
+                    <p style='color: red;'>Please log in to add products to your cart.</p>
+                <?php endif; ?>
+            </li>
+        <?php endforeach; ?>
     </ul>
-    </div>
+</div>
+
+<?php
+if (isset($_SESSION['message']) && isset($_SESSION['message_type'])) {
+    $msg = $_SESSION['message'];
+    $type = $_SESSION['message_type'];
+    echo "
+    <script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            Swal.fire({
+                icon: '".($type == 'success' ? 'success' : 'error')."',
+                title: '".($type == 'success' ? '¡Éxito!' : 'Error')."',
+                text: '$msg'
+            });
+        });
+    </script>";
+    unset($_SESSION['message']);
+    unset($_SESSION['message_type']);
+}
+?>
+
 </body>
 </html>

@@ -1,24 +1,34 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Shop Page</h1>
-    <p>This is the shopping cart page.</p>
-    <a href="index.php">Continue Shopping</a>
-    <!-- Products -->
-<br>
-<?php foreach($_SESSION['cart'] as $product){
-    echo $product->getName();
-    echo '<br>';
-} 
+<link rel="stylesheet" href="public/styles/style_cart.css">
 
-?>
-<br>
-    <input type="submit" value="Pay" name="Pay">
+<h1>Shopping Cart</h1>
+<p>This is your shopping cart page.</p>
 
-</body>
-</html>
+<div class="cart-container">
+    <?php if(!empty($_SESSION['cart'])): ?>
+        <?php foreach($_SESSION['cart'] as $product): ?>
+            <div class="cart-item">
+                <div class="product-name">
+                    <?php echo htmlspecialchars($product->getName()); ?>
+                </div>
+                <div class="product-info">
+                    <span>Qty: <?php echo $product->quantity; ?></span> |
+                    <span><?php echo number_format($product->getPrice() * $product->quantity, 2); ?> €</span>
+                    <span>
+                        <form action="index.php?c=cart&action=remove&product_id=<?php echo $product->getId(); ?>" method="post" class="remove-form">
+                            <input type="submit" value="Remove" class="remove-button">
+                        </form>
+                    </span>
+                </div>
+            </div>
+            <?php endforeach; ?>
+            <form action="index.php?c=cart&action=clear" method="post" class="clear-cart-form">
+                <input type="submit" value="Clear Cart" class="clear-cart-button">
+            </form>
+            <form action="index.php?c=cart&action=pay" method="post">
+                <input type="submit" value="Pay" name="Pay" class="pay-button">
+            </form>
+            <?php else: ?>
+                <p class="cart-empty">Your cart is empty.</p>
+                <?php endif; ?>
+    <a href="index.php" class="continue-shopping">Continue Shopping</a>
+</div>

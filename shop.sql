@@ -147,7 +147,7 @@ ALTER TABLE `users`
   ADD PRIMARY KEY (`user_id`),
   ADD UNIQUE KEY `email` (`email`);
 
---
+
 -- AUTO_INCREMENT de las tablas volcadas
 --
 

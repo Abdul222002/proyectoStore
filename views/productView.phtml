@@ -16,7 +16,7 @@ echo '<p class="price">Price: <span>'.number_format($product->getPrice(), 2).' â
 echo '<p class="category">Category: '.htmlspecialchars($product->getCategory()).'</p>';
 
 if(isset($_SESSION['user']) && $_SESSION['user'] !== false){
-    echo '<form action="index.php?c=cart" method="post">
+    echo '<form action="index.php?c=cart&addCart&product_id='.htmlspecialchars($product->getId()).'" method="post">
             <input type="hidden" name="product_id" value="'.htmlspecialchars($product->getId()).'">
             <input type="submit" value="Add to Cart">
           </form>';
