@@ -38,10 +38,7 @@ class Order {
         return $this->order_date;
     }
     
-    public function getProducts() {
-        $products[] = OrderRepository::getProductsByOrderId($this->id);
-        return $this->products;
-    }
+    
 
     
 

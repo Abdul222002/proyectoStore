@@ -29,7 +29,10 @@ if (!$_SESSION['user']) {
     echo "<a href='index.php?c=cart'>Shopping Cart</a>   ";
     echo "<a href='index.php?c=login&logout=1'>Logout</a>   ";
     echo "<a href='index.php?c=orders'>My Orders</a>   ";
+    
+
 }
+
 
 // Mensaje de bienvenida o no autenticado
 if ($_SESSION['user']) {
@@ -37,6 +40,8 @@ if ($_SESSION['user']) {
 } else {
     echo "<p>You are not logged in.</p>";
 }
+
+
 ?>
 
 <h1>Shop Page</h1>
@@ -56,9 +61,22 @@ if ($_SESSION['user']) {
                 <p><?= htmlspecialchars($product->getDescription()); ?></p>
 
                 <?php if ($_SESSION['user']): ?>
-                    <form action="index.php?c=cart&addCart&product_id=<?= $product->getId(); ?>" method="post">
+                    <form action="index.php?c=cart&addCart&product_id=<?= $product->getId(); ?>" method="post">    
                         <input type="submit" value="Add to Cart">
                     </form>
+                    <?php
+                        if($_SESSION['user']->getRole() == 'admin'){
+                        ?>
+                        
+                        <form action="index.php?c=product&action=remove&product_id=<?= $product->getId(); ?>" method="post">
+                            <input type="submit" value="Remove Product">
+                        </form>
+                        <form action="index.php?c=product&action=update&product_id=<?= $product->getId(); ?>" method="post">
+                            <input type="submit" value="Update Product">
+                        </form>
+                        <?php
+                        }
+                        ?>
                 <?php else: ?>
                     <p style='color: red;'>Please log in to add products to your cart.</p>
                 <?php endif; ?>

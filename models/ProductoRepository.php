@@ -44,5 +44,17 @@ class ProductoRepository {
     $stmt->bind_param("iii", $quantity, $product_id, $quantity);
     return $stmt->execute();
     }
+
+    public static function removeProduct($product_id) {
+        $db = Connection::connect();
+        $q = "DELETE FROM products WHERE product_id = '" . $product_id . "'";
+        return $db->query($q);
+    }
+
+    public static function updateProduct($product_id, $name, $description, $category, $price, $stock, $image) {
+        $db = Connection::connect();
+        $q = "UPDATE products SET name = '" . $name . "', description = '" . $description . "', category = '" . $category . "', price = '" . $price . "', stock = '" . $stock . "', image = '" . $image . "' WHERE product_id = '" . $product_id . "'";
+        return $db->query($q);
+    }
 }
 ?>
