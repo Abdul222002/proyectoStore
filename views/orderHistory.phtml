@@ -14,6 +14,7 @@ if (!$pedidos){
     ?><h4> NO HAY PEDIDOS </h4><?php
 }else{
     foreach($pedidos as $pedido){
+        
         ?>  
     <table>
         <thead>
@@ -26,10 +27,10 @@ if (!$pedidos){
         </thead>    
         <tbody>
             <tr>
-                <td><?= htmlspecialchars($order->getId()) ?></td>
-                <td><?= htmlspecialchars($order->getTotal()) ?></td>
-                <td><?= htmlspecialchars($order->getStatus()) ?></td>
-                <td><?= htmlspecialchars($order->getOrderDate()) ?></td>
+                <td><?= htmlspecialchars($pedido->getId()) ?></td>
+                <td><?= htmlspecialchars($pedido->getTotal()) ?></td>
+                <td><?= htmlspecialchars($pedido->getStatus()) ?></td>
+                <td><?= htmlspecialchars($pedido->getOrder_Date()) ?></td>
             </tr>
         </tbody>
     </table>

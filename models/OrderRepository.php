@@ -1,19 +1,22 @@
 <?php
+require_once('models/Order.php');
+require_once('models/OrderDetail.php');
+require_once('models/Product.php');
 
 class OrderRepository {
     
     public static function getOrdersByUserId($user_id) {
         $db = Connection::connect();
-        $q = "SELECT * FROM orders WHERE user_id = ?";
+        $q = "SELECT * FROM orders WHERE user_id = " .$_SESSION['user']->getId();
         $result = $db->query($q);
         $orders = [];
         while ($row = mysqli_fetch_assoc($result)) {
             $orders[] = new Order(
-                $row['id'],
+                $row['order_id'],
                 $row['user_id'],
-                $row['total'],
+                $row['order_date'],
                 $row['status'],
-                $row['order_date']
+                $row['total']
             );
         }
         return $orders;
