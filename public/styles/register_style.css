@@ -1,0 +1,138 @@
+/* ==== RESET ==== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Roboto, sans-serif;
+}
+
+/* ==== PAGE BACKGROUND ==== */
+body.register-page {
+  background: linear-gradient(135deg, #e0f2fe, #dbeafe);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+/* ==== CONTAINER ==== */
+.register-container {
+  background-color: #ffffff;
+  padding: 40px 30px;
+  border-radius: 14px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+  max-width: 420px;
+  width: 100%;
+  text-align: center;
+  animation: fadeIn 0.6s ease;
+}
+
+/* ==== TITLE ==== */
+.register-container h1 {
+  font-size: 2rem;
+  color: #2563eb;
+  margin-bottom: 25px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+/* ==== MESSAGES ==== */
+.message {
+  font-weight: bold;
+  margin-bottom: 20px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 0.95rem;
+}
+
+.message.green {
+  background-color: #d1fae5;
+  color: #065f46;
+}
+
+.message.red {
+  background-color: #fee2e2;
+  color: #991b1b;
+}
+
+/* ==== FORM ==== */
+.register-form {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.register-form label {
+  margin: 8px 0 5px;
+  font-weight: 500;
+  color: #374151;
+}
+
+.register-form input[type="text"],
+.register-form input[type="email"],
+.register-form input[type="password"] {
+  width: 100%;
+  padding: 10px 14px;
+  margin-bottom: 15px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.register-form input:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 5px rgba(37, 99, 235, 0.3);
+  outline: none;
+}
+
+/* ==== SUBMIT BUTTON ==== */
+.register-form input[type="submit"] {
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  color: #fff;
+  border: none;
+  padding: 12px 0;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background 0.3s ease, transform 0.15s ease, box-shadow 0.3s ease;
+  width: 100%;
+}
+
+.register-form input[type="submit"]:hover {
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(37, 99, 235, 0.35);
+}
+
+/* ==== BACK LINK ==== */
+.back-link {
+  display: inline-block;
+  margin-top: 20px;
+  color: #2563eb;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease, transform 0.1s ease;
+}
+
+.back-link:hover {
+  color: #1e40af;
+  transform: translateY(-1px);
+  text-decoration: underline;
+}
+
+/* ==== ANIMATION ==== */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ==== RESPONSIVE ==== */
+@media (max-width: 500px) {
+  .register-container {
+    padding: 30px 20px;
+  }
+}

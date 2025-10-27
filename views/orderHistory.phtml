@@ -1,45 +1,40 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Historial de pedidos</title>
+    <link rel="stylesheet" href="public/styles/style_orders.css">
 </head>
 <body>
-    
 
-<?php
+    <h1>🛍️ Historial de pedidos</h1>
 
-if (!$pedidos){
-    ?><h4> NO HAY PEDIDOS </h4><?php
-}else{
-    foreach($pedidos as $pedido){
-        
-        ?>  
-    <table>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>TOTAL</th>
-                <th>STATE</th>
-                <th>DATE</th>
-            </tr>
-        </thead>    
-        <tbody>
-            <tr>
-                <td><?= htmlspecialchars($pedido->getId()) ?></td>
-                <td><?= htmlspecialchars($pedido->getTotal()) ?></td>
-                <td><?= htmlspecialchars($pedido->getStatus()) ?></td>
-                <td><?= htmlspecialchars($pedido->getOrder_Date()) ?></td>
-            </tr>
-        </tbody>
-    </table>
-    <?php
-    }
-}
-?>
-<a href="index.php">← Back to shop</a>
+    <?php if (!$pedidos): ?>
+        <h4>❌ No hay pedidos registrados</h4>
+    <?php else: ?>
+        <div class="orders-container">
+            <?php foreach ($pedidos as $pedido): ?>
+                <div class="order-card">
+                    <div class="order-header">
+                        <span class="order-id">🧾 Pedido #<?= htmlspecialchars($pedido->getId()) ?></span>
+                        <span class="order-date">📅 <?= htmlspecialchars($pedido->getOrder_Date()) ?></span>
+                    </div>
+
+                    <div class="order-details">
+                        <p class="order-total">💰 Total: <strong><?= htmlspecialchars($pedido->getTotal()) ?> €</strong></p>
+                        <p>Estado: 
+                            <span class="status <?= strtolower(htmlspecialchars($pedido->getStatus())) ?>">
+                                <?= htmlspecialchars($pedido->getStatus()) ?>
+                            </span>
+                        </p>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        </div>
+    <?php endif; ?>
+
+    <a href="index.php" class="back-btn">← Volver a la tienda</a>
+
 </body>
 </html>
-
-

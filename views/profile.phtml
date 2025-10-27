@@ -3,21 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>User Profile</title>
+    <link rel="stylesheet" href="public/styles/profile_style.css">
 </head>
-<body>
+<body class="profile-page">
+
+<div class="profile-container">
     <h1>User Profile</h1>
-    <?php
-    if (isset($_SESSION['user']) && $_SESSION['user'] !== false) {
-        $user = $_SESSION['user'];
-        echo '<p><strong>Username:</strong> ' . htmlspecialchars($user->getUsername()) . '</p>';
-        echo '<p><strong>Email:</strong> ' . htmlspecialchars($user->getEmail()) . '</p>';
-        echo '<p><a href="index.php?c=orders">View Order History</a></p>';
-    } else {
-        echo '<p>Please log in to view your profile.</p>';
-    }
-    ?>
+
+    <?php if (isset($_SESSION['user']) && $_SESSION['user'] !== false): ?>
+        <?php $user = $_SESSION['user']; ?>
+        <div class="profile-info">
+            <p><strong>Username:</strong> <?= htmlspecialchars($user->getUsername()); ?></p>
+            <p><strong>Email:</strong> <?= htmlspecialchars($user->getEmail()); ?></p>
+        </div>
+        <a href="index.php?c=orders">View Order History</a>
+    <?php else: ?>
+        <p class="profile-empty">Please log in to view your profile.</p>
+        <a href="index.php?c=login">Go to Login</a>
+    <?php endif; ?>
+
     <br>
-    <a href="index.php">← Back to shop</a>
+    <a href="index.php">← Back to Shop</a>
+</div>
+
 </body>
 </html>

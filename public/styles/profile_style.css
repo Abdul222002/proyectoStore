@@ -1,0 +1,104 @@
+/* ==== RESET ==== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", Roboto, sans-serif;
+}
+
+/* ==== BODY ==== */
+body.profile-page {
+    background: linear-gradient(135deg, #e0e7ff, #f3f4f6);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 40px 20px;
+    color: #1f2937;
+}
+
+/* ==== CONTAINER ==== */
+.profile-container {
+    background-color: #fff;
+    border-radius: 16px;
+    padding: 30px 40px;
+    max-width: 500px;
+    width: 100%;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    animation: fadeIn 0.6s ease;
+}
+
+/* ==== HEADER ==== */
+.profile-container h1 {
+    text-align: center;
+    font-size: 2rem;
+    color: #3b82f6;
+    margin-bottom: 25px;
+}
+
+/* ==== USER INFO ==== */
+.profile-info p {
+    font-size: 1rem;
+    margin: 12px 0;
+}
+
+.profile-info strong {
+    color: #374151;
+}
+
+/* ==== LINK BUTTON ==== */
+.profile-container a {
+    display: inline-block;
+    margin-top: 20px;
+    text-decoration: none;
+    color: #fff;
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.profile-container a:hover {
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    transform: translateY(-2px);
+}
+
+/* ==== EMPTY MESSAGE ==== */
+.profile-empty {
+    text-align: center;
+    color: #ef4444;
+    font-weight: 500;
+    margin: 20px 0;
+}
+
+/* ==== ANIMATION ==== */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px);}
+    to { opacity: 1; transform: translateY(0);}
+}
+
+/* ==== IMAGE ==== */
+.product-container img {
+  width: 100%;
+  max-height: 300px; /* reducimos la altura máxima */
+  object-fit: contain; /* mantiene la proporción sin recortar */
+  border-radius: 12px;
+  margin-bottom: 25px;
+  transition: transform 0.4s ease;
+}
+
+.product-container img:hover {
+  transform: scale(1.02);
+}
+
+/* ==== RESPONSIVE ==== */
+@media (max-width: 600px) {
+  .product-container img {
+    max-height: 200px; /* más pequeña en móviles */
+  }
+
+  .product-container {
+    padding: 20px;
+  }
+}
