@@ -5,7 +5,6 @@ if(isset($_GET['logout']) && $_GET['logout']==1){
     $_SESSION['user']=false;
     $_SESSION['message'] = 'Has cerrado sesión correctamente.';
     $_SESSION['message_type'] = 'success';
-    CartRepository::clearCart();
     header('Location: index.php');
     exit();
 
@@ -29,7 +28,6 @@ if(isset($_POST['Login']) && isset($_POST['username']) && isset($_POST['password
         $_SESSION['user']= $user;
         $_SESSION['message'] = 'Inicio de sesión exitoso.';
         $_SESSION['message_type'] = 'success';
-        CartRepository::clearCart();
         header('Location: index.php');
         exit();
     } else {
